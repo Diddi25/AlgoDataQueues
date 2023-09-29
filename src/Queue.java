@@ -1,4 +1,4 @@
 public abstract class Queue {
-    public abstract void add();
-    public abstract Integer remove();
+    public abstract void addAtEnd(Integer newitem);
+    public abstract void remove();
 }
