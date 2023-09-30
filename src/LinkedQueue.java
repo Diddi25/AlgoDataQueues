@@ -1,22 +1,22 @@
 public class LinkedQueue<K extends Comparable<K>,V> extends Queue<K,V> {
-    private Cell<K,V> first;
-    private Cell<K,V> last;
+    private QueueCell<K,V> first;
+    private QueueCell<K,V> last;
     public LinkedQueue() {
         this.first = null;
     }
     @Override
     public void addAtFirst(Node<K,V> newItem) {
         if (this.first == null) {
-            this.first = new Cell<K,V>(newItem, null); //nästa referens är null
+            this.first = new QueueCell<>(newItem, null); //nästa referens är null
             last = this.first;
         } else {
-            last = new Cell<K,V>(newItem, last);
+            last = new QueueCell<>(newItem, last);
         }
     }
     @Override
     public Node<K,V> remove() {
-        Cell<K,V> firstInQueue = first;
-        first = first.next;
+        QueueCell<K,V> firstInQueue = first;
+        first = first.nextCell;
         return firstInQueue.item;
     }
     @Override

@@ -1,8 +1,8 @@
 public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
     private final Node<K,V>[] staticQueue = new Node[10];
     private int staticQueuePointer = 0; //k
-    private Node<K,V> first;
-    private Node<K,V> last;
+    private QueueCell<K,V> first;
+    private QueueCell<K,V> last;
     @Override
     public void addAtFirst(Node<K,V> newItem) {
         if (staticQueuePointer == staticQueue.length - 1) {

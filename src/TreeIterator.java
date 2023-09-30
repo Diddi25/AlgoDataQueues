@@ -1,8 +1,8 @@
 import java.util.Iterator;
 public class TreeIterator<K extends Comparable <K>,V> implements Iterator<Node<K,V>> {
-    private final LinkedQueue<K,V> queue;
+    private final Queue<K,V> queue;
     public TreeIterator(Node<K,V> root) {
-        this.queue = new LinkedQueue<>();
+        this.queue = new LinkedQueue<>(); //kan ändras till ArrayQueue
         pushAllLeftNodes(root);
     }
     private void pushAllLeftNodes(Node<K,V> current) {
