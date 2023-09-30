@@ -1,8 +1,10 @@
-public class ArrayQueue extends Queue {
-    private final int[] staticQueue = new int[10];
+public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
+    private final Node<K,V>[] staticQueue = new Node[10];
     private int staticQueuePointer = 0; //k
+    private Node<K,V> first;
+    private Node<K,V> last;
     @Override
-    public void addAtEnd(Integer newItem) {
+    public void addAtFirst(Node<K,V> newItem) {
         if (staticQueuePointer == staticQueue.length - 1) {
             throw new StackOverflowError("Full stack, cannot push");
         }
@@ -10,11 +12,16 @@ public class ArrayQueue extends Queue {
         staticQueuePointer++;
     }
     @Override
-    public void remove() {
+    public Node<K,V> remove() {
         if (staticQueue.length == 0) {
-            return;
+            return null;
         }
         staticQueue[staticQueuePointer] = 0;
         staticQueuePointer--;
+        return 0;
+    }
+    @Override
+    public boolean isEmpty() {
+        return first == last;
     }
 }
