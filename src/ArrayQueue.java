@@ -1,24 +1,29 @@
 public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
-    private final Node<K,V>[] staticQueue = new Node[10];
-    private int staticQueuePointer = 0; //k
-    private QueueCell<K,V> first;
-    private QueueCell<K,V> last;
+    private final Node<K,V>[] theQueue = new Node[10];
+    private int first = 0;
+    private int last = 0;
+    private int queueLength = theQueue.length;
     @Override
     public void addAtFirst(Node<K,V> newItem) {
-        if (staticQueuePointer == staticQueue.length - 1) {
-            throw new StackOverflowError("Full stack, cannot push");
+        if (last == queueLength - 1) {
+            last = 0;
         }
-        staticQueue[staticQueuePointer] = newItem;
-        staticQueuePointer++;
+        if (first == 0) {
+            theQueue[first] = newItem;
+            last++;
+        } else {
+            theQueue[last] = newItem;
+            last++;
+        }
     }
     @Override
     public Node<K,V> remove() {
-        if (staticQueue.length == 0) {
-            return null;
+        if(first == queueLength - 1) {
+            
         }
-        staticQueue[staticQueuePointer] = 0;
-        staticQueuePointer--;
-        return 0;
+        Node<K,V> saveBeforeReturning = theQueue[first];
+        first++;
+        return saveBeforeReturning;
     }
     @Override
     public boolean isEmpty() {

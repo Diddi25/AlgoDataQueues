@@ -9,10 +9,10 @@ public class TreeIterator<K extends Comparable <K>,V> implements Iterator<Node<K
         if (root == null) {
             return;
         } else {
-            pushFromLeft(root);
+            pushInQueue(root);
         }
     }
-    private void pushFromLeft(Node<K,V> current) {
+    private void pushInQueue(Node<K,V> current) {
         queue.addAtFirst(current);
     }
     @Override
@@ -23,10 +23,10 @@ public class TreeIterator<K extends Comparable <K>,V> implements Iterator<Node<K
     public Node<K,V> next() {
         Node<K,V> current = queue.remove();
         if(current.left != null) {
-            pushFromLeft(current.left);
+            pushInQueue(current.left);
         }
         if(current.right != null) {
-            pushFromLeft(current.right);
+            pushInQueue(current.right);
         }
         return current;
     }
