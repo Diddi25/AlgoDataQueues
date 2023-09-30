@@ -3,13 +3,17 @@ public class TreeIterator<K extends Comparable <K>,V> implements Iterator<Node<K
     private final Queue<K,V> queue;
     public TreeIterator(Node<K,V> root) {
         this.queue = new LinkedQueue<>(); //kan ändras till ArrayQueue
-        pushAllLeftNodes(root);
+        checkIfRootIsNull(root);
     }
-    private void pushAllLeftNodes(Node<K,V> current) {
-        while(current != null) {
-            queue.addAtFirst(current);
-            current = current.left;
+    private void checkIfRootIsNull(Node<K,V> root) {
+        if (root == null) {
+            return;
+        } else {
+            pushFromLeft(root);
         }
+    }
+    private void pushFromLeft(Node<K,V> current) {
+        queue.addAtFirst(current);
     }
     @Override
     public boolean hasNext() {
@@ -18,8 +22,11 @@ public class TreeIterator<K extends Comparable <K>,V> implements Iterator<Node<K
     @Override
     public Node<K,V> next() {
         Node<K,V> current = queue.remove();
-        if (current != null) {
-            pushAllLeftNodes(current.right);
+        if(current.left != null) {
+            pushFromLeft(current.left);
+        }
+        if(current.right != null) {
+            pushFromLeft(current.right);
         }
         return current;
     }
