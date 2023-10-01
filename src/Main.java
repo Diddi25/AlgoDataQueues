@@ -6,14 +6,19 @@ public class Main {
         queue.addAtFirst(new Node<>(2,10));
         queue.addAtFirst(new Node<>(3,3));
         queue.addAtFirst(new Node<>(4,2));
-        queue.addAtFirst(new Node<>(5,2));
-
-        queue.addAtFirst(new Node<>(6,2));
-        queue.addAtFirst(new Node<>(7,2));
 
         queue.remove();
+        queue.remove();
 
-        queue.addAtFirst(new Node<>(5,1));
+        queue.addAtFirst(new Node<>(5,2));
+        queue.addAtFirst(new Node<>(6,2));
+        queue.addAtFirst(new Node<>(7,2));
+        queue.addAtFirst(new Node<>(8,2));
+
+        queue.addAtFirst(new Node<>(9,2));
+        queue.addAtFirst(new Node<>(10,2));
+
+        queue.remove();
 
     }
 
