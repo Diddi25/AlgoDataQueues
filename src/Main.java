@@ -7,6 +7,20 @@ public class Main {
         queue.addAtFirst(new Node<>(3,3));
         queue.addAtFirst(new Node<>(4,2));
 
+        queue.remove();
+
+        queue.addAtFirst(new Node<>(5,1));
+
+    }
+
+    private void bigPart() {
+        LinkedQueue<Integer, Integer> queue = new LinkedQueue<>();
+
+        queue.addAtFirst(new Node<>(1,7));
+        queue.addAtFirst(new Node<>(2,10));
+        queue.addAtFirst(new Node<>(3,3));
+        queue.addAtFirst(new Node<>(4,2));
+
         BinaryTree<Integer, Integer> tree = new BinaryTree<>();
 
         int[] randomKeys = GenerateArray.sorted(10, 1000);
@@ -22,6 +36,5 @@ public class Main {
         for (Node<Integer, Integer> i: tree) {
             System.out.println("next value " + i.key);
         }
-
     }
 }

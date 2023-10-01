@@ -16,7 +16,11 @@ public class LinkedQueue<K extends Comparable<K>,V> extends Queue<K,V> {
     @Override
     public Node<K,V> remove() {
         QueueCell<K,V> firstInQueue = first;
-        first = first.nextCell;
+        QueueCell<K,V> next = last;
+        while (next.nextCell != first) {
+            next = next.nextCell;
+        }
+        first = next;
         return firstInQueue.item;
     }
     @Override
