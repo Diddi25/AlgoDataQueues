@@ -20,6 +20,7 @@ public class LinkedQueue<K extends Comparable<K>,V> extends Queue<K,V> {
         while (next.nextCell != first) {
             next = next.nextCell;
         }
+        next.nextCell = null;
         first = next;
         return firstInQueue.item;
     }
