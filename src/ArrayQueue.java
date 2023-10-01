@@ -18,11 +18,15 @@ public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
     }
     @Override
     public Node<K,V> remove() {
-        if(first == queueLength - 1) {
-            
+        if(isEmpty()) {
+            return null;
         }
         Node<K,V> saveBeforeReturning = theQueue[first];
+        theQueue[first] = null;
         first++;
+        if(first == queueLength - 1) {
+            first = 0;
+        }
         return saveBeforeReturning;
     }
     @Override
