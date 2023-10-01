@@ -44,7 +44,7 @@ public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
         }
         for (int i = queueLength - last; i < queueLength - first; i++) {
             biggerQueue[i] = this.theQueue[last];
-            first++;
+            last++;
         }
         this.theQueue = biggerQueue;
         this.queueLength = queueLength*2;
