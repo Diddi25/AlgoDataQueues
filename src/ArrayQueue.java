@@ -1,17 +1,17 @@
 public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
-    private Node<K,V>[] theQueue = new Node[10];
+    private Node<K,V>[] theQueue = new Node[5];
     private int first = 0;
     private int last = 0;
     private int queueLength = theQueue.length;
     @Override
     public void addAtFirst(Node<K,V> newItem) {
-        if (last == queueLength - 1) {
+        if (last == queueLength && first > 0) {
             last = 0;
         }
-        if (last == first - 1) {
+        if (last == first - 1 || (last == queueLength && first == 0)) {
             allocateNewBiggerArray(first, last);
         }
-        if (first == 0) {
+        if (last == 0) {
             theQueue[first] = newItem;
         } else {
             theQueue[last] = newItem;
@@ -37,15 +37,26 @@ public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
     }
     private void allocateNewBiggerArray(int first, int last) {
         Node<K,V>[] biggerQueue = new Node[queueLength*2];
-        for (int i = 0; i < queueLength - last; i++) {
+        int iterateFirstItems = giveLengthDependingOnFirst(first);
+        for (int i = 0; i < iterateFirstItems; i++) {
             biggerQueue[i] = this.theQueue[first];
             first++;
         }
-        for (int i = queueLength - last; i < queueLength - first; i++) {
-            biggerQueue[i] = this.theQueue[last];
-            last++;
+        if (iterateFirstItems != queueLength) {
+            for (int i = iterateFirstItems; i < queueLength - first; i++) {
+                biggerQueue[i] = this.theQueue[last];
+                last++;
+            }
         }
         this.theQueue = biggerQueue;
         this.queueLength = queueLength*2;
+    }
+
+    private int giveLengthDependingOnFirst(int first) {
+        if (first == 0) {
+            return queueLength;
+        } else {
+            return queueLength - last;
+        }
     }
 }

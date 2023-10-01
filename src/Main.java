@@ -1,11 +1,15 @@
 public class Main {
     public static void main(String[] args) {
-        LinkedQueue<Integer, Integer> queue = new LinkedQueue<>();
+        ArrayQueue<Integer, Integer> queue = new ArrayQueue<>();
 
         queue.addAtFirst(new Node<>(1,7));
         queue.addAtFirst(new Node<>(2,10));
         queue.addAtFirst(new Node<>(3,3));
         queue.addAtFirst(new Node<>(4,2));
+        queue.addAtFirst(new Node<>(5,2));
+
+        queue.addAtFirst(new Node<>(6,2));
+        queue.addAtFirst(new Node<>(7,2));
 
         queue.remove();
 
