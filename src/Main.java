@@ -13,12 +13,16 @@ public class Main {
         queue.addAtFirst(new Node<>(5,2));
         queue.addAtFirst(new Node<>(6,2));
         queue.addAtFirst(new Node<>(7,2));
-        queue.addAtFirst(new Node<>(8,2));
 
+        queue.addAtFirst(new Node<>(8,2)); //på index 0
         queue.addAtFirst(new Node<>(9,2));
-        queue.addAtFirst(new Node<>(10,2));
 
-        queue.remove();
+        //här ska ny array skapas när first > 0
+        //eftersom last = first - 1
+
+        queue.addAtFirst(new Node<>(10,2));
+        queue.addAtFirst(new Node<>(11,2));
+        queue.addAtFirst(new Node<>(12,2));
 
     }
 

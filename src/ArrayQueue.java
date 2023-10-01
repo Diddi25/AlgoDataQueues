@@ -8,10 +8,10 @@ public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
         if (last == queueLength && first > 0) {
             last = 0;
         }
+        theQueue[last] = newItem;
         if (last == first - 1 || (last == queueLength && first == 0)) {
             allocateNewBiggerArray(first, last);
         }
-        theQueue[last] = newItem;
         last++;
     }
     @Override
@@ -39,19 +39,22 @@ public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
             first++;
         }
         if (iterateFirstItems != queueLength) {
-            for (int i = iterateFirstItems; i < queueLength - first; i++) {
-                biggerQueue[i] = this.theQueue[last];
-                last++;
+            int k = 0;
+            for (int i = iterateFirstItems; i < queueLength; i++) {
+                biggerQueue[i] = this.theQueue[k];
+                k++;
             }
         }
         this.theQueue = biggerQueue;
+        this.first = 0;
+        this.last = queueLength - 1;
         this.queueLength = queueLength*2;
     }
     private int giveLengthDependingOnFirst(int first) {
         if (first == 0) {
             return queueLength;
         } else {
-            return queueLength - last;
+            return queueLength - last - 1;
         }
     }
 }
