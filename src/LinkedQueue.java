@@ -16,7 +16,7 @@ public class LinkedQueue<K extends Comparable<K>,V> extends Queue<K,V> {
     }
     @Override
     public Node<K,V> dequeue() {
-        if(this.first == null) {
+        if (this.first == null) {
             return null;
         }
         QueueCell<K,V> firstInQueue = first;
