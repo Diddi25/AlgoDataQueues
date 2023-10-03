@@ -5,7 +5,7 @@ public class LinkedQueue<K extends Comparable<K>,V> extends Queue<K,V> {
         this.first = null;
     }
     @Override
-    public void addAtFirst(Node<K,V> newItem) {
+    public void enqueue(Node<K,V> newItem) {
         if (this.first == null) {
             this.first = new QueueCell<>(newItem, null); //nästa referens är null
             last = this.first;
@@ -15,7 +15,7 @@ public class LinkedQueue<K extends Comparable<K>,V> extends Queue<K,V> {
         }
     }
     @Override
-    public Node<K,V> remove() { //kanske ändra kön?
+    public Node<K,V> dequeue() {
         if(this.first == null) {
             return null;
         }

@@ -4,7 +4,7 @@ public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
     private int last = 0;
     private int queueLength = theQueue.length;
     @Override
-    public void addAtFirst(Node<K,V> newItem) {
+    public void enqueue(Node<K,V> newItem) {
         if (last == queueLength && first > 0) {
             last = 0;
         }
@@ -12,17 +12,17 @@ public class ArrayQueue<K extends Comparable<K>,V> extends Queue<K,V> {
         if (last == first - 1 || (last == queueLength && first == 0)) {
             allocateNewBiggerArray(first, last);
         }
-        last++;
+        last = (last + 1) % queueLength;
     }
     @Override
-    public Node<K,V> remove() {
+    public Node<K,V> dequeue() {
         if (isEmpty()) {
             return null;
         }
         Node<K,V> saveBeforeReturning = theQueue[first];
         theQueue[first] = null;
-        first++;
-        if (first == queueLength - 1) {
+        first = (first + 1) % queueLength;
+        if (first == queueLength - 1 && last > 0) {
             first = 0;
         }
         return saveBeforeReturning;

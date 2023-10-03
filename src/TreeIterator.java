@@ -13,7 +13,7 @@ public class TreeIterator<K extends Comparable <K>,V> implements Iterator<Node<K
         }
     }
     private void pushInQueue(Node<K,V> current) {
-        queue.addAtFirst(current);
+        queue.enqueue(current);
     }
     @Override
     public boolean hasNext() {
@@ -21,7 +21,7 @@ public class TreeIterator<K extends Comparable <K>,V> implements Iterator<Node<K
     }
     @Override
     public Node<K,V> next() {
-        Node<K,V> current = queue.remove();
+        Node<K,V> current = queue.dequeue();
         if(current.left != null) {
             pushInQueue(current.left);
         }
