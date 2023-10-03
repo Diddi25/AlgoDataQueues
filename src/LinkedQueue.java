@@ -10,18 +10,17 @@ public class LinkedQueue<K extends Comparable<K>,V> extends Queue<K,V> {
             this.first = new QueueCell<>(newItem, null); //nästa referens är null
             last = this.first;
         } else {
-            last = new QueueCell<>(newItem, last);
+            last.nextCell = new QueueCell<>(newItem, null);;
+            last = last.nextCell;
         }
     }
     @Override
-    public Node<K,V> remove() {
-        QueueCell<K,V> firstInQueue = first;
-        QueueCell<K,V> next = last;
-        while (next.nextCell != first) {
-            next = next.nextCell;
+    public Node<K,V> remove() { //kanske ändra kön?
+        if(this.first == null) {
+            return null;
         }
-        next.nextCell = null;
-        first = next;
+        QueueCell<K,V> firstInQueue = first;
+        first = first.nextCell;
         return firstInQueue.item;
     }
     @Override
